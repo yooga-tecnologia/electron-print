@@ -1,5 +1,5 @@
 {
-  "name": "electron-print",
+  "name": "yooga-electron-print",
   "version": "1.0.3",
   "description": "Library to print from electron app.",
   "main": "index.js",
