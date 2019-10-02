@@ -8,10 +8,10 @@ module.exports = {
   print : print
 }
 
-function print(text){
+function print(text, nome_arquivo = "print.html"){
   let win = new BrowserWindow({show: false})
-  fs.writeFile(path.join(__dirname,'../../../print.html'), text, () => {
-    win.loadURL('file://'+path.join(__dirname,'../../../print.html'))
+  fs.writeFile(path.join(__dirname,'../../../'+nome_arquivo), text, () => {
+    win.loadURL('file://'+path.join(__dirname,'../../../'+nome_arquivo))
     win.webContents.on('did-finish-load', () => {
         win.webContents.print({silent:true,deviceName:''})
         setTimeout(function(){
