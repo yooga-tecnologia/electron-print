@@ -13,10 +13,16 @@ function print(text, nome_arquivo = "print.html"){
   fs.writeFile(path.join(__dirname,'../../../'+nome_arquivo), text, () => {
     win.loadURL('file://'+path.join(__dirname,'../../../'+nome_arquivo))
     win.webContents.on('did-finish-load', () => {
-        win.webContents.print({silent:true,deviceName:''})
-        setTimeout(function(){
-          win.close();
-        }, 3000);
+        win.webContents.print({silent:true,deviceName:''}, (res) => {
+        
+          setTimeout(() => {
+            win.close();
+          }, 3000);
+        })
     })
+
+    win.webContents.on('did-fail-load', () => {
+      console.error("[yooga-electron-print] FAIL LOAD")
+    }) 
   })
 }
